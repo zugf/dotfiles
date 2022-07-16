@@ -26,6 +26,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   echo $(which fish)
   # apt-get update && export DEBIAN_FRONTEND=noninteractive \
   #     && apt-get -y install --no-install-recommends fish
+  # wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh && chmod +x /usr/local/bin/oh-my-posh
 fi
 
 
