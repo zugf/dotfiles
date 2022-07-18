@@ -4,5 +4,5 @@ set -x DOCKER_DEFAULT_PLATFORM linux/amd64
 oh-my-posh init fish --config ~/.config/poshtheme.omp.json | source
 
 if status is-interactive   
-    envsource ~/.splunkbuild.env
+    posix-source ~/.profile.env
 end
