@@ -10,8 +10,9 @@ make_symlinks() {
       # if it is a directory that is not symlinked, descend    
       entries=$(ls -1 -A $DOTFILEDIR/$fullfile)
       make_symlinks "${entries[@]}" "$fullfile/"
-    else      
-      rm $HOME/$fullfile
+    else
+      echo $HOME/$fullfile
+      rm -f $HOME/$fullfile      
       ln -fs $DOTFILEDIR/$fullfile $HOME/$fullfile
     fi
   done
