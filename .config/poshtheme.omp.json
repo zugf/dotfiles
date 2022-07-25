@@ -35,8 +35,8 @@
           "type": "path"
         },
         {
-          "background": "#FF6B6B",
-          "foreground": "#ffffff",
+          "background": "#4ECDC4",
+          "foreground": "#000000",
           "powerline_symbol": "\ue0b0",
           "properties": {
             "branch_icon": "",
@@ -46,7 +46,7 @@
           },
           "style": "powerline",
           "background_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF6B6B{{ end }}",
             "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
             "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
             "{{ if gt .Behind 0 }}#B388FB{{ end }}"
