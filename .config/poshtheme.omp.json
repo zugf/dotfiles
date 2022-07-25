@@ -5,26 +5,37 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#9A348E",
+          "background": "#556270",
           "foreground": "#ffffff",
-          "leading_diamond": "\ue0b6",
+          "properties": {
+            "time_format": "15:04"
+          },
           "style": "diamond",
-          "template": "{{ .UserName }} ",
+          "template": "{{ .CurrentDate | date .Format }}",
+          "leading_diamond": "\ue0b6",
+          "type": "time"
+        },
+        {
+          "background": "#4ECDC4",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": "{{ .UserName }}",
           "type": "session"
         },
         {
-          "background": "#DA627D",
+          "background": "#C7F464",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "properties": {
             "style": "folder"
           },
           "style": "powerline",
-          "template": " {{ .Path }} ",
+          "template": "{{ .Path }}",
           "type": "path"
         },
         {
-          "background": "#FCA17D",
+          "background": "#FF6B6B",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "properties": {
@@ -34,8 +45,23 @@
             "fetch_upstream_icon": true
           },
           "style": "powerline",
-          "template": " \u279c ({{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}) ",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
+            "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+            "{{ if gt .Behind 0 }}#B388FB{{ end }}"
+          ],
+          "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uF692 {{ .StashCount }}{{ end }}",
+        
           "type": "git"
+        },
+        {
+          "type": "python",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#100e23",
+          "background": "#C44D58",
+          "template": "\uE235 {{ .Full }}"
         },
         {
           "type": "text",
@@ -43,7 +69,7 @@
           "powerline_symbol": "\uE0B0",
           "foreground": "#ffffff",
           "background": "#d53c14",
-          "template": "{{ .Env.AWS_ACCOUNT_ID }} ({{ .Env.SCOPE }}:{{ .Env.ENVIRONMENT }})"
+          "template": "{{if .Env.AWS_ACOUNT_ID}}{{ .Env.AWS_ACCOUNT_ID }} ({{ .Env.SCOPE }}:{{ .Env.ENVIRONMENT }}){{ end }}"
         },
         {
           "type": "kubectl",
@@ -51,7 +77,7 @@
           "powerline_symbol": "\uE0B0",
           "foreground": "#000000",
           "background": "#ebcc34",
-          "template": " \uFD31 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} "
+          "template": "\uFD31 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}"
         },
         {
           "type": "executiontime",
@@ -63,18 +89,18 @@
             "style": "austin",
             "threshold": 500
           },
-          "template": " <#fefefe>\ufbab</> "
-        },
+          "template": "<#fefefe>\ufbab {{ .FormattedMs }}</>"
+        },        
         {
-          "background": "#33658A",
+          "type": "exit",
+          "style": "powerline",
           "foreground": "#ffffff",
+          "background": "#890000",
+          "powerline_symbol": "\ue0b0",
+          "template": "{{ if gt .Code 0 }}{{.Code}}{{ end }}",
           "properties": {
-            "time_format": "15:04"
-          },
-          "style": "diamond",
-          "template": " \u2665 {{ .CurrentDate | date .Format }} ",
-          "trailing_diamond": "\ue0b0",
-          "type": "time"
+            "always_enabled": false
+          }
         }
       ],
       "type": "prompt"
