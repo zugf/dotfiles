@@ -8,6 +8,7 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
         ssh-agent -s &> $HOME/.ssh/ssh-agent
    fi
    eval `cat $HOME/.ssh/ssh-agent`
+   ssh-add
 fi
 
 # zugf

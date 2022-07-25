@@ -1,0 +1,13 @@
+#!/bin/sh
+branchname=$(git rev-parse --abbrev-ref HEAD)
+reponame=${PWD##*/}
+date=$(date --iso-8601)
+filename="$reponame"_"$date"_"$branchname"
+
+git bundle create ~/backup/$filename.bundle $branchname
+
+# restore
+# git clone ~/backup/$filename.bundle
+# cd $filename
+# git branch -r
+# git switch $branchname
