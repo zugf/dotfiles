@@ -1,3 +1,4 @@
+# github client
 # https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
@@ -8,6 +9,10 @@ sudo apt install gh
 # GITHUB_TOKEN=""
 # gh auth login
 # set HTTPS and authenticate Git, GithubToken
+
+# oh my posh
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh && sudo chmod +x /usr/local/bin/oh-my-posh
+# oh-my-posh get shell
 
 
 if [ "$(uname)" == "Darwin" ]; then

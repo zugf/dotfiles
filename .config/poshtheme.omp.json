@@ -16,8 +16,23 @@
           "type": "time"
         },
         {
-          "background": "#4ECDC4",
+          "type": "shell",
+          "background": "#556270",
           "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "properties": {
+            "mapped_shell_names": {
+              "fish": "\uD83D\uDC1F",
+              "pwsh": "PS",
+              "bash": ""
+            },
+            "template": "{{ .Name }}"
+          }
+        },
+        {
+          "background": "#4ECDC4",
+          "foreground": "#000000",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
           "template": "{{ .UserName }}",
@@ -25,7 +40,7 @@
         },
         {
           "background": "#C7F464",
-          "foreground": "#ffffff",
+          "foreground": "#000000",
           "powerline_symbol": "\ue0b0",
           "properties": {
             "style": "folder"
@@ -52,7 +67,6 @@
             "{{ if gt .Behind 0 }}#B388FB{{ end }}"
           ],
           "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uF692 {{ .StashCount }}{{ end }}",
-        
           "type": "git"
         },
         {
@@ -90,7 +104,7 @@
             "threshold": 500
           },
           "template": "<#fefefe>\ufbab {{ .FormattedMs }}</>"
-        },        
+        },
         {
           "type": "exit",
           "style": "powerline",

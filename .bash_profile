@@ -23,3 +23,6 @@ eval "$(pyenv init -)"
 
 # Created by `pipx` on 2022-06-27 12:57:34
 export PATH="$PATH:$HOME/.local/bin"
+
+# ohmyposh
+eval "$(oh-my-posh init bash)"
