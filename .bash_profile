@@ -14,9 +14,11 @@ fi
 echo "exec .bash_profile"
 
 # zugf
-set -a
-. ~/.profile.env
-set +a
+if [ -f ~/.profile.env ]; then
+   set -a
+   . ~/.profile.env
+   set +a
+fi
 
 # zugf: pyenv
 if [ -x "$(command -v pyenv)" ]; then
