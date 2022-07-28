@@ -12,7 +12,7 @@ make_symlinks() {
       make_symlinks "${entries[@]}" "$fullfile/"
     else
       echo $HOME/$fullfile
-      rm -f $HOME/$fullfile      
+      rm -f $HOME/$fullfile
       ln -fs $DOTFILEDIR/$fullfile $HOME/$fullfile
     fi
   done
@@ -24,4 +24,8 @@ if [[ $dotfiles ]]; then
   echo "All set!"
 else
   echo "You don't have anything in '$DOTFILEDIR'"
+fi
+
+if ! [ -x "$(command -v oh-my-posh)" ]; then
+  sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh && sudo chmod +x /usr/local/bin/oh-my-posh
 fi

@@ -13,7 +13,7 @@ fi
 
 # zugf
 set -a
-. .profile.env
+. ~/.profile.env
 set +a
 
 # zugf: pyenv
