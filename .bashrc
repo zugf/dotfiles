@@ -107,6 +107,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.profile.env ]; then
+   set -a
+   . ~/.profile.env
+   set +a
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -119,11 +125,15 @@ if ! shopt -oq posix; then
 fi
 
 # zugf: pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-# zugf: pyenv
-eval "$(pyenv virtualenv-init -)"
+if [ -x "$(command -v pyenv)" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+# ohmyposh
+eval "$(oh-my-posh init bash)"
 
 # Created by `pipx` on 2022-06-27 12:57:34
 export PATH="$PATH:$HOME/.local/bin"

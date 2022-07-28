@@ -13,13 +13,6 @@ fi
 
 echo "exec .bash_profile"
 
-# zugf
-if [ -f ~/.profile.env ]; then
-   set -a
-   . ~/.profile.env
-   set +a
-fi
-
 # zugf: pyenv
 if [ -x "$(command -v pyenv)" ]; then
    export PYENV_ROOT="$HOME/.pyenv"
@@ -30,5 +23,3 @@ fi
 # Created by `pipx` on 2022-06-27 12:57:34
 export PATH="$PATH:$HOME/.local/bin"
 
-# ohmyposh
-eval "$(oh-my-posh init bash)"
