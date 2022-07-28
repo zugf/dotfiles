@@ -133,7 +133,7 @@ if [ -x "$(command -v pyenv)" ]; then
 fi
 
 # ohmyposh
-eval "$(oh-my-posh init bash)"
+eval "$(oh-my-posh init bash --config ~/.config/poshtheme.omp.json)"
 
 # Created by `pipx` on 2022-06-27 12:57:34
 export PATH="$PATH:$HOME/.local/bin"
