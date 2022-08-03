@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+export LANG=C.UTF-8
+export reponame=${PWD##*/}
+
+appconf=$(ls **/default/app.conf)
+collector=$(ls **/bin/*_collector.py)
+export appname=$(dirname $(dirname $appconf))
+export collectorname=$(basename $collector .py)
+
+oldpath=$PWD
+git clone --depth=1 git@github.com:zugf/splunk-app-modularinput.git /tmp/$reponame && cd /tmp/$reponame 
+bash configure.sh
+rm -rf .git
+rm -rf .build
+cd $oldpath
+
+git checkout -b app_update
+cp -a -f /tmp/$reponame/. $oldpath/
+rm -rf /tmp/$reponame
+git-submodule-fix

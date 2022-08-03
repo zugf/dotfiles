@@ -1,0 +1,26 @@
+ #!/bin/bash
+
+HOST=...
+download-github-releases $GITHUB_TOKEN https://api.github.com/repos/zepdev/splunk-app-zep-kafka/releases/tags/v0.2.2
+package=$(ls *.tar.gz)
+
+scp $package $DOMAIN_USER@$HOST:~/package/$package
+
+# ## on remote (manual update)
+# cd ~/package
+# for f in *.tar.gz; do tar -xvf "$f" ; done
+# package=$(ls -d */)
+# package=${package::-1}
+# sudo chown -R splunk:splunk $package
+
+# # create backup
+# timestamp=$(date "+%Y-%m-%d")
+# sudo tar -czvf ~/backup/${timestamp}_${package}.tar.gz /opt/splunk/etc/apps/$package/
+
+# # update
+# STOP MODULAR INPUT CLEAR EVERYTHING EXCEPT local
+# sudo rm -rf /opt/splunk/etc/apps/$package/bin
+# sudo rm -rf /opt/splunk/etc/apps/$package/default
+# sudo rm -rf /opt/splunk/etc/apps/$package/lib
+# sudo rm -rf /opt/splunk/etc/apps/$package/README
+# sudo cp -pr $package/* /opt/splunk/etc/apps/$package
